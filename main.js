@@ -45,13 +45,17 @@ $(document).ready(() => {
                 const estado = res.uf;
                 const endereco = `${logradouro}, ${bairro}, ${cidade}/${estado}`;
 
+                $('#endereco').val(endereco);
+                $('#numero').focus();
+            })
+            .catch(error => {
+                alert('Ocorreu um erro ao buscar o endereço. Tente novamente mais tarde.');
+            })
+            .finally(() => {
                 setTimeout(() => {
-                    $('#endereco').val(endereco);
-                    $('#numero').focus();
-
                     $(botao).find('.bi').removeClass('d-none');
                     $(botao).find('.spinner-border').addClass('d-none');
-                }, 2000);
+                }, 1500);
             });
     });
 });
