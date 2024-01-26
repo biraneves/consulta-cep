@@ -21,20 +21,37 @@ $(document).ready(() => {
         $(botao).find('.bi').addClass('d-none');
         $(botao).find('.spinner-border').removeClass('d-none');
 
-        $.ajax(endpoint).done(response => {
-            const logradouro = response.logradouro;
-            const bairro = response.bairro;
-            const cidade = response.localidade;
-            const estado = response.uf;
-            const endereco = `${logradouro}, ${bairro}, ${cidade}/${estado}`;
+        // $.ajax(endpoint).done(response => {
+        //     const logradouro = response.logradouro;
+        //     const bairro = response.bairro;
+        //     const cidade = response.localidade;
+        //     const estado = response.uf;
+        //     const endereco = `${logradouro}, ${bairro}, ${cidade}/${estado}`;
 
-            setTimeout(() => {
-                $('#endereco').val(endereco);
-                $('#numero').focus();
+        //     setTimeout(() => {
+        //         $('#endereco').val(endereco);
+        //         $('#numero').focus();
 
-                $(botao).find('.bi').removeClass('d-none');
-                $(botao).find('.spinner-border').addClass('d-none');
-            }, 1000);
-        });
+        //         $(botao).find('.bi').removeClass('d-none');
+        //         $(botao).find('.spinner-border').addClass('d-none');
+        //     }, 1000);
+        // });
+        fetch(endpoint)
+            .then(response => response.json())
+            .then(res => {
+                const logradouro = res.logradouro;
+                const bairro = res.bairro;
+                const cidade = res.localidade;
+                const estado = res.uf;
+                const endereco = `${logradouro}, ${bairro}, ${cidade}/${estado}`;
+
+                setTimeout(() => {
+                    $('#endereco').val(endereco);
+                    $('#numero').focus();
+
+                    $(botao).find('.bi').removeClass('d-none');
+                    $(botao).find('.spinner-border').addClass('d-none');
+                }, 2000);
+            });
     });
 });
