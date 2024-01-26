@@ -58,4 +58,12 @@ $(document).ready(() => {
                 }, 1500);
             });
     });
+
+    $('#formulario-pedido').submit(e => {
+        e.preventDefault();
+
+        if ($('#nome').val().length == 0) {
+            throw new Error('O nome deve ser informado');
+        }
+    });
 });
